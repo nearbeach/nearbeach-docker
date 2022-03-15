@@ -1,0 +1,47 @@
+services:
+  db:
+    image: mariadb:10.5.8
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'nearbeach_docker'
+      MYSQL_USER: 'docker'
+      MYSQL_PASSWORD: 'docker'
+      MYSQL_ROOT_PASSWORD: 'docker'
+  migrate:
+    build: .
+    working_dir: /oceansuite
+    command: python3 manage.py migrate
+    volumes:
+      - .:/oceansuite
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+  superuser:
+    build: .
+    working_dir: /oceansuite
+    command: python3 ./manage.py initadmin
+    volumes:
+      - .:/oceansuite
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+      - migrate
+  web:
+    build: .
+    working_dir: /oceansuite
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/oceansuite
+    ports:
+      - 8000:8000
+      - 2525:2525
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+      - migrate
+      - superuser
+
