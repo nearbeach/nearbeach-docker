@@ -1,22 +1,46 @@
 # syntax=docker/dockerfile:1
 FROM python:3.8.3-alpine
 
+# Environmental Variables for the Python
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+# Setup of Working Directory
 WORKDIR /oceansuite
 
+# Copy the requirements.txt file
 COPY requirements.txt requirements.txt
 
-# install dependencies
-RUN apk update
-RUN pip install --upgrade pip wheel
-RUN apk add python3-dev
-RUN apk add gpgme-dev
-RUN apk add libc-dev
-RUN apk add gcc jpeg-dev zlib-dev libffi-dev freetype-dev musl-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev cairo-dev pango-dev gdk-pixbuf-dev
-RUN apk add mariadb-dev
-RUN pip install -r requirements.txt
-RUN pip install mysqlclient
+# Update apk and pip
+RUN echo "**** Update apk and Pip ****" && \
+    apk update && \
+    pip install --upgrade pip wheel
 
-COPY oceansuite/* .
+# Install Required Dependencies
+RUN echo "**** install build packages ****" && \
+    apk add --no-cache --virtual=build-dependencies --upgrade \
+        cairo-dev \
+        freetype-dev \
+        gcc \ 
+        gdk-pixbuf-dev \
+        gpgme-dev \
+        jpeg-dev \ 
+        lcms2-dev \
+        libc-dev \
+        libffi-dev \
+        mariadb-dev \
+        musl-dev \
+        openjpeg-dev \
+        pango-dev \
+        python3-dev \
+        tcl-dev \
+        tiff-dev \
+        tk-dev \
+        zlib-dev
+
+# Install Required Python Dependencies
+RUN echo "**** install python packages ****" && \
+    pip install -r requirements.txt
+
+# Copy everything into the destination
+COPY . .
