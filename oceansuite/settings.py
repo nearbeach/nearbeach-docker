@@ -30,6 +30,11 @@ DEBUG = True
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 ALLOWED_HOSTS = ['*']
 
+if "CSRF_TRUSTED_URLS" in os.environ:
+    CSRF_TRUSTED_ORIGINS = [
+        os.getenv('CSRF_TRUSTED_URLS'),
+    ]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -163,7 +168,3 @@ EMAIL_PORT = os.getenv('SMTP_EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('SMTP_EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('SMTP_EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-CSRF_TRUSTED_ORIGINS = [
-    os.getenv('CSRF_TRUSTED_URLS'),
-]
