@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:10.7
+    container_name: nearbeach-db
+    networks:
+      - web
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=vfZF28mp
+      - MYSQL_DATABASE=NearBeach
+      - MYSQL_USER=nearbeach
+      - MYSQL_PASSWORD=Test1234_
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+  nearbeach:
+    image: robotichead/nearbeach:development-0.29.1
+    container_name: nearbeach
+    networks:
+      - web
+    environment:
+      - SECRET_KEY=asdfghjasdklfjalskdfjasdlkfjasdlkfjs
+      - SMTP_EMAIL_HOST=smtp.example.com
+      - SMTP_EMAIL_PORT=2525
+      - SMTP_EMAIL_HOST_USER=
+      - SMTP_EMAIL_HOST_PASSWORD=
+      - MYSQL_DATABASE=NearBeach
+      - MYSQL_USER=nearbeach
+      - MYSQL_PASSWORD=Test1234_
+      - MYSQL_ROOT_PASSWORD=vfZF28mp
+      - MYSQL_HOST=nearbeach-db
+      - ADMIN_USERNAME=aidan
+      - ADMIN_EMAIL=aidan@example.com
+    volumes:
+      - .:/ceansuite
+    ports:
+      - 8000:8000
+      - 2525:2525
+    # command: ls
+    command: >
+      sh -c "python manage.py wait_for_database &&
+             ls -al &&
+             python manage.py migrate &&
+             python manage.py initadmin &&
+             python manage.py runserver 0.0.0.0:8000"
+    restart: unless-stopped
+    depends_on:
+      - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nearbeach.entrypoints=http"
+      - "traefik.http.routers.nearbeach.rule=Host(`nearbeach.example.com`)"
+      - "traefik.http.middlewares.nearbeach-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.nearbeach.middlewares=nearbeach-https-redirect"
+      - "traefik.http.routers.nearbeach-secure.entrypoints=https"
+      - "traefik.http.routers.nearbeach-secure.rule=Host(`nearbeach.example.com`)"
+      - "traefik.http.routers.nearbeach-secure.tls=true"
+      - "traefik.http.routers.nearbeach-secure.service=nearbeach"
+      - "traefik.http.services.nearbeach.loadbalancer.server.port=8000"
+      - "traefik.docker.network=web"
+
+networks:
+  web:
+    external: true
