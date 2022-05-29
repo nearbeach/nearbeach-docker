@@ -17,7 +17,7 @@ services:
     image: robotichead/nearbeach:development-0.29.1
     container_name: nearbeach
     environment:
-      - SECRET_KEY=asdfghjasdklfjalskdfjasdlkfjasdlkfjs
+      - SECRET_KEY=
       - SMTP_EMAIL_HOST=smtp.example.com
       - SMTP_EMAIL_PORT=2525
       - SMTP_EMAIL_HOST_USER=
@@ -27,8 +27,8 @@ services:
       - MYSQL_PASSWORD=Test1234_
       - MYSQL_ROOT_PASSWORD=vfZF28mp
       - MYSQL_HOST=nearbeach-db
-      - ADMIN_USERNAME=aidan
-      - ADMIN_EMAIL=aidan@example.com
+      - ADMIN_USERNAME=
+      - ADMIN_EMAIL=
     volumes:
       - .:/ceansuite
     ports:
