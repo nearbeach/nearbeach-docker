@@ -1,3 +1,4 @@
 NearBeach==0.29.2
 django-probes
 mysqlclient
+tzdata
