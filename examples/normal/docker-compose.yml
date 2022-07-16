@@ -29,6 +29,7 @@ services:
       - MYSQL_HOST=nearbeach-db
       - ADMIN_USERNAME=
       - ADMIN_EMAIL=
+      - CSRF_TRUSTED_URLS=https://nearbeach.example.com
     volumes:
       - .:/ceansuite
     ports:

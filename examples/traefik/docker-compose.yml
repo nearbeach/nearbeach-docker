@@ -33,6 +33,7 @@ services:
       - MYSQL_HOST=nearbeach-db
       - ADMIN_USERNAME=aidan
       - ADMIN_EMAIL=aidan@example.com
+      - CSRF_TRUSTED_URLS=https://nearbeach.example.com
     volumes:
       - .:/ceansuite
     ports:
