@@ -5,7 +5,6 @@ on:
     branches:
       - 'main'
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,7 +28,7 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
-        name: Build and push
+        name: Build and push latest
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -37,3 +36,14 @@ jobs:
           push: true
           platforms: linux/arm64,linux/amd64,linux/amd64/v2,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:latest
+      -
+        name: Build and push nomad
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile-nomad
+          push: true
+          platforms: linux/arm64,linux/amd64,linux/amd64/v2,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:nomad-latest
+
+
