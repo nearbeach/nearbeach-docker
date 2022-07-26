@@ -51,12 +51,12 @@ RUN echo "**** See if skip running variable passed: ${SKIPRUNNING}" && \
     if [ $skipRunning == "true" ]; \
         then echo "Skipping Running"; \
     else \
-        echo "**** running NearBeach ****" && \
-        python manage.py wait_for_database && \
-        echo "**** running python migrate" && \
-        python manage.py migrate && \
-        echo "**** Initialise admin in NearBeach" && \
-        python manage.py initadmin && \
-        echo "**** Start NearBeach" && \
-        python manage.py runserver 0.0.0.0:8000 \
+        echo "**** running NearBeach ****"; \
+        python manage.py wait_for_database; \
+        echo "**** running python migrate"; \
+        python manage.py migrate; \
+        echo "**** Initialise admin in NearBeach"; \
+        python manage.py initadmin; \
+        echo "**** Start NearBeach"; \
+        python manage.py runserver 0.0.0.0:8000; \
     fi  
