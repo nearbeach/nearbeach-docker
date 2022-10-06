@@ -37,14 +37,14 @@ jobs:
           platforms: linux/arm64,linux/amd64,linux/amd64/v2,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:latest
       -
-        name: Build and push development-0.29.5
+        name: Build and push development-0.29.6
         uses: docker/build-push-action@v2
         with:
           context: .
           file: ./Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64,linux/amd64/v2,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:development-0.29.5
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:development-0.29.6
 
 #         name: Build and push nomad
 #         uses: docker/build-push-action@v2
