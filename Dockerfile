@@ -19,24 +19,24 @@ RUN echo "**** Update apk and Pip ****" && \
 # Install Required Dependencies
 RUN echo "**** install build packages ****" && \
     apk add --no-cache --virtual=build-dependencies --upgrade \
-        cairo-dev \
-        freetype-dev \
-        gcc \ 
-        gdk-pixbuf-dev \
-        gpgme-dev \
-        jpeg-dev \ 
-        lcms2-dev \
-        libc-dev \
-        libffi-dev \
-        mariadb-dev \
-        musl-dev \
-        openjpeg-dev \
-        pango-dev \
-        python3-dev \
-        tcl-dev \
-        tiff-dev \
-        tk-dev \
-        zlib-dev
+    cairo-dev \
+    freetype-dev \
+    gcc \
+    gdk-pixbuf-dev \
+    gpgme-dev \
+    jpeg-dev \
+    lcms2-dev \
+    libc-dev \
+    libffi-dev \
+    mariadb-dev \
+    musl-dev \
+    openjpeg-dev \
+    pango-dev \
+    python3-dev \
+    tcl-dev \
+    tiff-dev \
+    tk-dev \
+    zlib-dev
 
 # Install Required Python Dependencies
 RUN echo "**** install python packages ****" && \
@@ -44,3 +44,6 @@ RUN echo "**** install python packages ****" && \
 
 # Copy everything into the destination
 COPY . .
+RUN chmod +x setup_db_and_run_server.sh
+
+CMD './setup_db_and_run_server.sh'
