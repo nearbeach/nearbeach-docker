@@ -5,11 +5,11 @@ FROM python:3.8.3-alpine
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+RUN adduser -D -g "nearbeach" nearbeach
+
 # Setup of Working Directory
 WORKDIR /oceansuite
-
-# Copy the requirements.txt file
-COPY requirements.txt requirements.txt
+RUN chown nearbeach:nearbeach /oceansuite
 
 # Update apk and pip
 RUN echo "**** Update apk and Pip ****" && \
@@ -38,12 +38,15 @@ RUN echo "**** install build packages ****" && \
     tk-dev \
     zlib-dev
 
+# Copy the requirements.txt file
+COPY --chown=nearbeach:nearbeach requirements.txt requirements.txt
 # Install Required Python Dependencies
 RUN echo "**** install python packages ****" && \
     pip install -r requirements.txt
 
+USER nearbeach
 # Copy everything into the destination
-COPY . .
-RUN chmod +x setup_db_and_run_server.sh
+COPY --chown=nearbeach:nearbeach . .
+RUN chmod u+x setup_db_and_run_server.sh
 
 CMD './setup_db_and_run_server.sh'
