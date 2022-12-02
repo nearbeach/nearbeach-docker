@@ -8,3 +8,16 @@ docker buildx build \
 --tag <username>/<image-name>:<tag> .
 ````
 
+# Updating Docker Versions
+
+Please edit the file ./.github/workflows/docker-image.yml, on line 47 to represent the latest NearBeach version
+
+
+# Update Read Me
+
+When there is a minor version update, you'll need to update the requirements txt file.
+i.e.
+
+````
+NearBeach==0.29.7
+````
