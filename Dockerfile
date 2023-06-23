@@ -11,6 +11,11 @@ RUN adduser -D -g "nearbeach" nearbeach
 WORKDIR /oceansuite
 RUN chown nearbeach:nearbeach /oceansuite
 
+# Create the private folder directory
+RUN echo "**** Making private directory *****" && \
+    mkdir oceansuite && \
+    mkdir oceansuite/private
+
 # Update apk and pip
 RUN echo "**** Update apk and Pip ****" && \
     apk update && \
