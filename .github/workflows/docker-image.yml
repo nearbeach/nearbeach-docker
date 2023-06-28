@@ -44,7 +44,7 @@ jobs:
           file: ./Dockerfile
           push: true
           #platforms: linux/arm64,linux/amd64,linux/amd64/v2,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
-          platforms: linux-amd64
+          platforms: linux/amd64
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:development-0.30.0RC1
 
 #         name: Build and push nomad
