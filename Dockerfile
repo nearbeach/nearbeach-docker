@@ -54,6 +54,6 @@ USER nearbeach
 COPY --chown=nearbeach:nearbeach . .
 RUN chmod u+x setup_db_and_run_server.sh
 
-FROM python:3.11.4-alpine
-COPY --from=build / /
+#FROM python:3.11.4-alpine
+#COPY --from=build / /
 CMD './setup_db_and_run_server.sh'
