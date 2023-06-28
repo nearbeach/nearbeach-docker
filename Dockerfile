@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python:3.8.3-alpine
+FROM python:3.11.4-alpine as build
 
 # Environmental Variables for the Python
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -54,4 +54,6 @@ USER nearbeach
 COPY --chown=nearbeach:nearbeach . .
 RUN chmod u+x setup_db_and_run_server.sh
 
+FROM python:3.11.4-alpine
+COPY --from=build / /
 CMD './setup_db_and_run_server.sh'

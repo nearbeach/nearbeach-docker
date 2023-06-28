@@ -8,6 +8,8 @@ echo "**** begining DB setup ****"
 python manage.py migrate
 python manage.py initadmin
 echo "**** DB setup complete ****"
+echo "**** Collect the static files ****"
+python manage.py collectstatic
 
 echo "**** running NearBeach ****"
 python manage.py runserver 0.0.0.0:8000
