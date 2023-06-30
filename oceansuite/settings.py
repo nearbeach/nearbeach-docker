@@ -172,7 +172,9 @@ PRIVATE_MEDIA_ROOT = '/private'
 PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
 
 STATIC_URL = '/static/'
-STATIC_ROOT= os.path.join(BASE_DIR,'ceansuite/static/')
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, "static"),
+]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
