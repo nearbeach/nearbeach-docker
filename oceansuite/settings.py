@@ -128,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = os.getenv("TIMEZONE", 'UTC')
 
 USE_I18N = True
 
@@ -145,17 +145,31 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-PRIVATE_MEDIA_URL = '/private/' #Can change
-if DEBUG:
-    # dev
-    import os
+PRIVATE_MEDIA_URL = '/private/'
 
-    PRIVATE_MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__))
-    PRIVATE_MEDIA_SERVER = 'DefaultServer'
-else:
-    # prod
-    PRIVATE_MEDIA_ROOT = '<< folder containing private folder >>'
-    PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
+# Check to see if we are importing AWS credentials
+if "AWS_ACCESS_KEY_ID" in os.environ:
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+
+# Check to see if we are importing Azure Credentials
+if "AZURE_STORAGE_CONNECTION_STRING" in os.environ:
+    AZURE_STORAGE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+    AZURE_STORAGE_CONTAINER_NAME = os.getenv("AZURE_STORAGE_CONTAINER_NAME")
+
+# if DEBUG:
+#     # dev
+#     import os
+
+#     PRIVATE_MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__))
+#     PRIVATE_MEDIA_SERVER = 'DefaultServer'
+# else:
+#     # prod
+#     PRIVATE_MEDIA_ROOT = '<< folder containing private folder >>'
+#     PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
+
+PRIVATE_MEDIA_ROOT = '/private'
+PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
 
 STATIC_URL = '/static/'
 STATIC_ROOT= os.path.join(BASE_DIR,'static/')
