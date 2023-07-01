@@ -171,11 +171,12 @@ if "AZURE_STORAGE_CONNECTION_STRING" in os.environ:
 PRIVATE_MEDIA_ROOT = '/private'
 PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR, "static"),
-]
+if DEBUG:
+    STATIC_URL = '/static/'
+else:
+    STATIC_URL = 'https://cdn.nearbeach.org/0.30.0-RC2/'
+    
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
