@@ -174,7 +174,7 @@ PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
 if DEBUG:
     STATIC_URL = '/static/'
 else:
-    STATIC_URL = 'https://cdn.nearbeach.org/0.30.0-RC3/'
+    STATIC_URL = 'https://cdn.nearbeach.org/0.30.0-RC4/'
     
 #STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
