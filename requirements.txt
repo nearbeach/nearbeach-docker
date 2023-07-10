@@ -1,6 +1,4 @@
-NearBeach==0.30.0rc3
+NearBeach
 django-probes
 mysqlclient
 tzdata
-azure-storage-blob
-azure-identity

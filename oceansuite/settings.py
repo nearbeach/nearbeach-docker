@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from NearBeach import __version__ as VERSION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -157,16 +158,6 @@ if "AZURE_STORAGE_CONNECTION_STRING" in os.environ:
     AZURE_STORAGE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
     AZURE_STORAGE_CONTAINER_NAME = os.getenv("AZURE_STORAGE_CONTAINER_NAME")
 
-# if DEBUG:
-#     # dev
-#     import os
-
-#     PRIVATE_MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__))
-#     PRIVATE_MEDIA_SERVER = 'DefaultServer'
-# else:
-#     # prod
-#     PRIVATE_MEDIA_ROOT = '<< folder containing private folder >>'
-#     PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
 
 PRIVATE_MEDIA_ROOT = '/private'
 PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
@@ -174,9 +165,8 @@ PRIVATE_MEDIA_SERVER = 'ApacheXSendfileServer'
 if DEBUG:
     STATIC_URL = '/static/'
 else:
-    STATIC_URL = 'https://cdn.nearbeach.org/0.30.0-RC3/'
+    STATIC_URL = F"https://cdn.nearbeach.org/{VERSION}/"
     
-#STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
