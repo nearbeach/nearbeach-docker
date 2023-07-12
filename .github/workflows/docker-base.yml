@@ -2,7 +2,7 @@ name: NearBeach Base Docker Automation
 
 on:
   schedule:
-    - cron:  '5 * * * *'
+    - cron: '13 * * * *'
 
 
 jobs:
