@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 ARG TARGET_BRANCH=main
-FROM nearbeach-base:$TARGET_BRANCH
+FROM robotichead/nearbeach-base:$TARGET_BRANCH
 
 # Create the private folder directory
 RUN echo "**** Making private directory *****" && \
