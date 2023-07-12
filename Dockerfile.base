@@ -1,0 +1,42 @@
+# syntax=docker/dockerfile:1
+FROM python:3.11.4-alpine
+
+# Environmental Variables for the Python
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+RUN adduser -D -g "nearbeach" nearbeach
+
+# Update apk and pip
+RUN echo "**** Update apk and Pip ****" && \
+    apk update && \
+    pip install --upgrade pip wheel && \
+    pip install requests
+
+# Install Required Dependencies
+RUN echo "**** install build packages ****" && \
+    apk add --no-cache --virtual=build-dependencies --upgrade \
+    cairo-dev \
+    freetype-dev \
+    gcc \
+    gdk-pixbuf-dev \
+    gpgme-dev \
+    jpeg-dev \
+    lcms2-dev \
+    libc-dev \
+    libffi-dev \
+    mariadb-dev \
+    musl-dev \
+    openjpeg-dev \
+    pango-dev \
+    python3-dev \
+    tcl-dev \
+    tiff-dev \
+    tk-dev \
+    zlib-dev
+
+ARG TARGET_BRANCH=main
+# Copy the requirements.txt file
+RUN echo "**** install python packages ****" && \
+    python3 -c "import requests; print(requests.get('https://raw.githubusercontent.com/robotichead/NearBeach/${TARGET_BRANCH}/requirements.txt').text)" > requirements.txt && \
+    pip install -r requirements.txt

@@ -2,5 +2,5 @@ NearBeach
 django-probes
 mysqlclient
 tzdata
-azure-storage-blob
-azure-identity
+# azure-storage-blob
+# azure-identity
