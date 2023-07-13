@@ -2,6 +2,9 @@
 ARG TARGET_BRANCH=main
 FROM robotichead/nearbeach-base:$TARGET_BRANCH
 
+RUN echo "**** install NearBeach Latest ****" && \
+    pip install NearBeach
+
 # Create the private folder directory
 RUN echo "**** Making private directory *****" && \
     mkdir oceansuite && \
