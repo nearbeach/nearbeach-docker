@@ -3,12 +3,12 @@ ARG TARGET_BRANCH=main
 FROM robotichead/nearbeach-base:$TARGET_BRANCH
 
 RUN echo "**** install NearBeach Latest ****" && \
-    pip install NearBeach
+    pip install NearBeach django-probes mysqlclient mysqlclient
 
 # Create the private folder directory
-RUN echo "**** Making private directory *****" && \
-    mkdir oceansuite && \
-    mkdir oceansuite/private
+# RUN echo "**** Making private directory *****" && \
+#     mkdir oceansuite && \
+#     mkdir oceansuite/private
 
 # Setup of Working Directory
 WORKDIR /oceansuite
