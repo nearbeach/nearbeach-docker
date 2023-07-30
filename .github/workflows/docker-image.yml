@@ -35,7 +35,7 @@ jobs:
           file: ./Dockerfile
           push: true
           #platforms: linux/arm64,linux/amd64,linux/amd64/v2,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
-          platforms: linux/arm64,linux/amd64,linux/arm/v7
+          platforms: linux/arm64,linux/amd64
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:latest
       -
         name: Build and push development-0.30.3
@@ -45,5 +45,5 @@ jobs:
           file: ./Dockerfile
           push: true
           #platforms: linux/arm64,linux/amd64,linux/amd64/v2,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
-          platforms: linux/arm64,linux/amd64,linux/arm/v7
+          platforms: linux/arm64,linux/amd64
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:development-0.30.3
