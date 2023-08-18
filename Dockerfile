@@ -3,7 +3,7 @@ ARG TARGET_BRANCH=main
 FROM robotichead/nearbeach-base:$TARGET_BRANCH
 
 RUN echo "**** install NearBeach Latest ****" && \
-    pip install NearBeach django-probes mysqlclient mysqlclient
+    pip install NearBeach django-probes mysqlclient mysqlclient psycopg2-binary
 
 # Create the private folder directory
 # RUN echo "**** Making private directory *****" && \

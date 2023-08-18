@@ -95,12 +95,12 @@ WSGI_APPLICATION = 'oceansuite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': os.getenv("MYSQL_HOST"), # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-        'NAME': os.getenv("MYSQL_DATABASE"),
-        'USER': os.getenv("MYSQL_USER"),
-        'PASSWORD': os.getenv("MYSQL_PASSWORD"),
+        'ENGINE': F'django.db.backends.{os.getenv("DB_ENGINE")}',
+        'HOST': os.getenv("DB_HOST"), # Or an IP Address that your DB is hosted on
+        'PORT': os.getenv("DB_PORT"),
+        'NAME': os.getenv("DB_DATABASE"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
     }
 }
 
