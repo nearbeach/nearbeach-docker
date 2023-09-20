@@ -76,6 +76,6 @@ with:
 Use the following code to create a local build for NearBeach
 
 1. Using a terminal, `cd` into this directory
-2. Run the following command `docker build --file Dockerfile --tag robotichead/nearbeach:nearbeach-local . `
+2. Run the following command `docker build --no-cache --file Dockerfile --tag robotichead/nearbeach:nearbeach-local . `
 3. Use the docker-compose example on https://nearbeach.org/self-hosting/ - modify the image to the match the build name. i.e. `image: robotichead/nearbeach:nearbeach-local`
 4. Using `docker compose up -D` you can easily test the local docker build of NearBeach 
