@@ -36,8 +36,10 @@ services:
         - ADMIN_EMAIL=<<Please fill>>
         - ALLOWED_HOSTS=<<yourdomain.com.au>>
         - CSRF_TRUSTED_URLS=<<https://yourdomain.com.au>>
-        - AZURE_STORAGE_CONNECTION_STRING=<<Please fill>>
-        - AZURE_STORAGE_CONTAINER_NAME=<<Please fill>>
+        - AWS_ACCESS_KEY_ID=<<Please fill>>
+        - AWS_SECRET_ACCESS_KEY=<<Please fill>>
+        - AWS_STORAGE_BUCKET_NAME=<<Please fill>>
+        - AWS_S3_ENDPOINT_URL=<<Please fill>>
         volumes:
         - .:/ceansuite
         ports:
