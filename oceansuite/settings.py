@@ -182,3 +182,11 @@ EMAIL_PORT = os.getenv('SMTP_EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('SMTP_EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('SMTP_EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Security settings
+# Log users out automatically
+if "SESSION_COOKIE_AGE" in os.environ:
+    SESSION_COOKIE_AGE = os.getenv('SESSION_COOKIE_AGE').split(",")
+
+if "SESSION_SAVE_EVERY_REQUEST" in os.environ:
+    SESSION_SAVE_EVERY_REQUEST = os.getenv('SESSION_SAVE_EVERY_REQUEST').split(",")
