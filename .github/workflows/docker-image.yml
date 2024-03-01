@@ -43,7 +43,7 @@ jobs:
           file: ./Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:development-${{ github.event.client_payload.version }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:${{ github.event.client_payload.version }}
       -
         name: Notify Discord
         run: |
