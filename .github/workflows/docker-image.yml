@@ -35,6 +35,7 @@ jobs:
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:latest
+          labels: version=${{ github.event.client_payload.version }}
       -
         name: Build and push versioned - ${{ github.event.client_payload.version }}
         uses: docker/build-push-action@v2
@@ -44,6 +45,7 @@ jobs:
           push: true
           platforms: linux/arm64,linux/amd64
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nearbeach:${{ github.event.client_payload.version }}
+          labels: version=${{ github.event.client_payload.version }}
       -
         name: Notify Discord
         run: |
