@@ -16,6 +16,7 @@ RUN echo "**** Update apk and Pip ****" && \
 # Install Required Dependencies
 RUN echo "**** install build packages ****" && \
     apk add --no-cache --virtual=build-dependencies --upgrade \
+    busybox-suid \
     cairo-dev \
     freetype-dev \
     gcc \
