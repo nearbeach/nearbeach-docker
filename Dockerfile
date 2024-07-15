@@ -3,20 +3,20 @@ ARG TARGET_BRANCH=main
 FROM robotichead/nearbeach-base:$TARGET_BRANCH
 
 RUN echo "**** install NearBeach Latest ****" && \
-    pip install NearBeach django-probes mysqlclient mysqlclient psycopg2-binary
+    pip install NearBeach
 
-# Create the private folder directory
-# RUN echo "**** Making private directory *****" && \
-#     mkdir oceansuite && \
-#     mkdir oceansuite/private
+RUN echo "**** copy over the crontab configuration ****"
+COPY crontab /etc/crontabs/root
 
-# Setup of Working Directory
+RUN echo "**** setup of working directory ****"
 WORKDIR /oceansuite
 RUN chown nearbeach:nearbeach /oceansuite
     
-USER nearbeach
-# Copy everything into the destination
+#USER nearbeach
+
+RUN echo "**** copy everything into the destination ****"
 COPY --chown=nearbeach:nearbeach . .
 RUN chmod u+x setup_db_and_run_server.sh
 
+RUN echo "**** run the setup database and run server scripts ****"
 CMD './setup_db_and_run_server.sh'

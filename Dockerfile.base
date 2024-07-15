@@ -17,6 +17,7 @@ RUN echo "**** Update apk and Pip ****" && \
 RUN echo "**** install build packages ****" && \
     apk add --no-cache --virtual=build-dependencies --upgrade \
     busybox-suid \
+    busybox-openrc \
     cairo-dev \
     freetype-dev \
     gcc \
@@ -33,6 +34,7 @@ RUN echo "**** install build packages ****" && \
     python3-dev \
     tcl-dev \
     tiff-dev \
+    tini \
     tk-dev \
     zlib-dev
 
@@ -40,4 +42,6 @@ ARG TARGET_BRANCH=main
 # Copy the requirements.txt file
 RUN echo "**** install python packages ****" && \
     python3 -c "import requests; print(requests.get('https://raw.githubusercontent.com/robotichead/NearBeach/${TARGET_BRANCH}/requirements.txt').text)" > requirements.txt && \
-    pip install -r requirements.txt
+    pip install -r requirements.txt && \
+    pip install django-probes mysqlclient mysqlclient psycopg2-binary
+

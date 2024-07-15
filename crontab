@@ -1,0 +1,1 @@
+* * * * * python3 /oceansuite/manage.py runscheduler 2>&1
