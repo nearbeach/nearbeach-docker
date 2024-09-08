@@ -22,3 +22,4 @@ class Command(BaseCommand):
     def generate_initial_password(self):
         alpha = string.ascii_letters + string.digits
         password = ''.join(secrets.choice(alpha) for i in range(16))
+        return password
