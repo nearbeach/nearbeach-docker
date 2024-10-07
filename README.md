@@ -61,7 +61,7 @@ Is that possible to do with the following code
 
 ```
 name: Build and push latest
-uses: docker/build-push-action@v2
+uses: docker/build-push-action@v6
 with:
     context: .
     file: ./Dockerfile
