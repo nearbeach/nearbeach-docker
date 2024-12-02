@@ -108,6 +108,8 @@ DATABASES = {
 }
 
 
+# CRONTAB_TIMESTR="0 0 * * *"
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -171,7 +173,7 @@ if DEBUG:
     STATIC_URL = '/static/'
 else:
     STATIC_URL = F"https://cdn.nearbeach.org/{VERSION}/"
-    
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
