@@ -37,6 +37,12 @@ RUN echo "**** install build packages ****" && \
     tini \
     tk-dev \
     zlib-dev
+    dcron \
+    libcap
+
+RUN echo "**** allow nearbeach user to run cron ****" && \
+    chown nearbeach:nearbeach /usr/sbin/crond && \
+    setcap cap_setgid=ep /usr/sbin/crond
 
 ARG TARGET_BRANCH=main
 # Copy the requirements.txt file

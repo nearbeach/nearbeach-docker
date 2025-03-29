@@ -6,13 +6,13 @@ RUN echo "**** install NearBeach Latest ****" && \
     pip install NearBeach
 
 RUN echo "**** copy over the crontab configuration ****"
-COPY crontab /etc/crontabs/root
+COPY --chown=nearbeach:nearbeach crontab /etc/crontabs/nearbeach
 
 RUN echo "**** setup of working directory ****"
 WORKDIR /oceansuite
 RUN chown nearbeach:nearbeach /oceansuite
-    
-#USER nearbeach
+
+USER nearbeach
 
 RUN echo "**** copy everything into the destination ****"
 COPY --chown=nearbeach:nearbeach . .
