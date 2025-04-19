@@ -36,8 +36,8 @@ RUN echo "**** install build packages ****" && \
     tiff-dev \
     tini \
     tk-dev \
-    zlib-dev
-    cron \
+    zlib-dev \
+    dcron \
     libcap
 
 RUN echo "**** allow nearbeach user to run cron ****" && \
