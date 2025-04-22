@@ -7,6 +7,7 @@ RUN echo "**** install NearBeach Latest ****" && \
 
 RUN echo "**** copy over the crontab configuration ****"
 COPY --chown=nearbeach:nearbeach crontab /etc/crontabs/nearbeach
+RUN crontab -u nearbeach /etc/crontabs/nearbeach && chmod u+s /etc/crontabs/nearbeach
 
 RUN echo "**** setup of working directory ****"
 WORKDIR /oceansuite

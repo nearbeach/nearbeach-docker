@@ -10,11 +10,11 @@ python manage.py migrate
 python manage.py initadmin
 echo "**** DB setup complete ****"
 
-echo "**** Updating Crontab ****"
-python manage.py updatecrontab
+#echo "**** Updating Crontab ****"
+#python manage.py updatecrontab
 
-echo "**** Starting Cron Services ****"
-crond -b -l 8
+#echo "**** Starting Cron Services ****"
+#crond -b -l 8
 
 echo "**** running NearBeach ****"
 python manage.py runserver 0.0.0.0:8000
