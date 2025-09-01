@@ -257,3 +257,7 @@ if "DOCUMENTATION_CLEAN_AFTER_DAYS" in os.environ:
 # TWO FACTOR AUTHENTICATION
 LOGIN_URL = 'two_factor:login'
 LOGIN_REDIRECT_URL = 'dashboard'
+
+# One time passwords
+OTP_EMAIL_SUBJECT = 'NearBeach 2FA'
+OTP_EMAIL_BODY_HTML_TEMPLATE_PATH = 'NearBeach/authentication/two_factor_authentication_email.html'
